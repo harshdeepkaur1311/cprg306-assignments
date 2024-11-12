@@ -28,8 +28,9 @@ export default  function ItemList({items, onItemSelect}){
             <ul className="my-6">
                 {sortedItems.map((item) => (
                     
-                    <li onSelect={onItemSelect} key={item.id}>
-                        <Item name={item.name} quantity={item.quantity} category={item.category}/>
+                    <li  key={item.id}>
+                        <Item name={item.name} quantity={item.quantity} category={item.category}
+                        onSelect={() => onItemSelect(item.name)}/>
 
                     </li>
                 ))}

@@ -15,23 +15,27 @@ export default function Page() {
        setItems([...items, newItem]);
    }
 
-   const cleanIngredient = (name) => {
-    return  name
-    .replace(/,.*$/g, "") // Remove size or additional details after a comma
-    .replace(/[^\w\s]/gi, "") // Remove emojis and special characters
-    .trim();
-   }
 
    const handleItemSelect = (itemName) => {
-      const cleanName = cleanIngredient(itemName);
+      const cleanName = itemName
+    //   .replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|[uD83C-\uDBFF\uDC00-\uDFFF])/g, '')
+      .replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|[\uD83C-\uDBFF\uDC00-\uDFFF])/g, '') // Remove emojis
+      .replace(/,.*$/, '')
+      .trim();
+
       setSelectedItemName(cleanName);
    }
     return (
-        <div>
-            <h1 className="font-bold text-3xl m-5">Shopping List</h1>
-            <NewItem  onAddItem={handleAddItem} />
-            <ItemList  items={items} onItemSelect={handleItemSelect}/>
-            {selectedItemName && <MealIdeas ingredient={selectedItemName} />}
+        <div className="flex">
+            <h1 className="font-bold text-3xl m-5 flex">Shopping List</h1>
+           <div className="flex">
+           <NewItem  onAddItem={handleAddItem} />
+           <ItemList  items={items} onItemSelect={handleItemSelect}/>
+           </div>
+            <div>
+            <MealIdeas ingredient={selectedItemName}/>
+            </div>
+           
 
 
         </div>

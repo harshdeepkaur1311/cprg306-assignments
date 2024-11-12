@@ -24,15 +24,17 @@ export default function MealIdeas({ingredient}) {
     }, [ingredient]);
     
     return (
-        <div>
-            <h2>Meal Ideas for  "{ingredient}"</h2>
+        <div >
+            <h2 className=" p-2">Meal Ideas for  "{ingredient}"</h2>
 
                 <ul>
                     {meals.map((meal) => (
+                        <div className="bg-slate-800 m-2 p-2">
                         <li key={meal.idMeal}>
                             {meal.strMeal}
 
                     </li>
+                    </div>
                     ))}
                 </ul>
         </div>
